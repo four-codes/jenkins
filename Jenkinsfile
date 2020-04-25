@@ -3,11 +3,12 @@ pipeline {
     environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
+        load "$HOME/.env/test.groovy"
+
     }
     stages {
         stage('Read env file') { 
             steps {
-                load "$HOME/.env/test.groovy"
                 echo "${env.DB_URL}"
             }
         }
