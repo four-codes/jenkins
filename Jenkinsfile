@@ -7,8 +7,11 @@ pipeline {
     stages {
         stage('docker installtion verify') { 
             steps {
-                sh "whoami"
                 sh 'docker --version'
+                sh '''
+                    echo "Multiline shell steps works too"
+                    whoami
+                '''
             }
         }
         stage('Docker-Compose installtion verify') { 
@@ -19,7 +22,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker-composer up -d'
             }
         }
     }
