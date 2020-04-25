@@ -14,7 +14,7 @@ pipeline {
         stage('Docker-Compose installtion verify') { 
             steps {
                 echo "${DB_ENGINE}"
-                sh 'docker-compose --version'
+                sh 'docker-composer --version'
             }
         }
         stage('Deploy') { 
