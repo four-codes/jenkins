@@ -5,6 +5,13 @@ pipeline {
         DB_ENGINE    = 'sqlite'
     }
     stages {
+        stage('Read env file') { 
+            steps {
+                load "$HOME/.env/test.groovy"
+                echo "${env.DB_URL}"
+                echo "${env.DB_URL2}"
+            }
+        }
         stage('docker installtion verify') { 
             steps {
                 sh '''
@@ -21,7 +28,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'docker-composer up -d'
+                sh 'docker-compose up -d'
             }
         }
     }
