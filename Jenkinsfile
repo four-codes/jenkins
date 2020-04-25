@@ -1,19 +1,19 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') { 
+        stage('docker installtion verify') { 
             steps {
                 sh 'docker --version'
             }
         }
-        stage('Test') { 
+        stage('Docker-Compose installtion verify') { 
             steps {
-                echo "Test"
+                sh 'docker-compose --version'
             }
         }
         stage('Deploy') { 
             steps {
-                echo "Test"
+                sh 'docker-compose up -d'
             }
         }
     }
