@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('docker installtion verify') { 
             steps {
-                echo "${DISABLE_AUTH}"
+                sh "whoami"
                 sh 'docker --version'
             }
         }
@@ -19,8 +19,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                input "Does the staging environment look ok?"
-                sh 'docker-compose down'
+                sh 'docker-composer up -d'
             }
         }
     }
