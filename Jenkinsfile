@@ -14,12 +14,13 @@ pipeline {
         stage('Docker-Compose installtion verify') { 
             steps {
                 echo "${DB_ENGINE}"
-                sh 'docker-composer --version'
+                sh 'docker-compose --version'
             }
         }
         stage('Deploy') { 
             steps {
-                sh 'docker-compose up -d'
+                input "Does the staging environment look ok?"
+                sh 'docker-compose down'
             }
         }
     }
