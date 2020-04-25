@@ -3,13 +3,11 @@ pipeline {
     environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
-        load "$HOME/.env/test.groovy"
-
     }
     stages {
         stage('Read env file') { 
             steps {
-                echo "${env.DB_URL}"
+                load "$HOME/.env/test.groovy"
             }
         }
         stage('docker installtion verify') { 
@@ -25,6 +23,7 @@ pipeline {
         stage('Docker-Compose installtion verify') { 
             steps {
                 echo "${DB_ENGINE}"
+                echo "${env.DB_URL}"
                 sh 'docker-compose --version'
             }
         }
