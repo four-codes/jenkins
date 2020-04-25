@@ -7,10 +7,9 @@ pipeline {
     stages {
         stage('docker installtion verify') { 
             steps {
-                sh 'docker --version'
                 sh '''
-                    echo "Multiline shell steps works too"
-                    whoami
+                    docker --version
+                    ansible --version
                 '''
             }
         }
@@ -22,7 +21,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker-composer up -d'
             }
         }
     }
