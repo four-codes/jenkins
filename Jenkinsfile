@@ -9,7 +9,6 @@ pipeline {
             steps {
                 load "$HOME/.env/test.groovy"
                 echo "${env.DB_URL}"
-                echo "${env.DB_URL2}"
             }
         }
         stage('docker installtion verify') { 
@@ -18,6 +17,8 @@ pipeline {
                     docker --version
                     ansible --version
                 '''
+                echo "${env.DB_URL2}"
+
             }
         }
         stage('Docker-Compose installtion verify') { 
