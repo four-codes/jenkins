@@ -4,5 +4,5 @@
     jenkins_hostname: jenkins-server
   roles:
     - role: ansible-role-jenkins
-  post_tasks:
-    - shell: echo "{{ adminpasswordfile }}"
+  # post_tasks:
+  #   - shell: echo "{{ adminpasswordfile }}"
