@@ -61,7 +61,7 @@ resource "aws_security_group" "nat_security_group" {
 
   vpc_id = "${aws_vpc.demo_vpc.id}"
   tags   = {
-    Name = "NAT Security Group"
+    Name = "Security Group"
   }
 }
 
@@ -83,7 +83,7 @@ resource "aws_instance" "instance" {
   user_data = <<-EOF
 		#!/bin/bash
 		sudo apt-get update
-		sudo apt-get install -y python
+		sudo apt-get install -y python openjdk-8-jdk
         sudo hostnamectl set-hostname jenkins-server
         EOF
   tags = {
@@ -98,6 +98,6 @@ resource "aws_instance" "instance" {
 
 resource "null_resource" "example1" {
   provisioner "local-exec" {
-    command = "sleep 60; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key key/auth -i hosts jenkins.yml"
+    command = "sleep 60; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key key/auth -i ../ansible/hosts ../ansible/jenkins.yml"
     }
 }
