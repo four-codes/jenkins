@@ -1,0 +1,45 @@
+---
+# tasks file for roles/ansible-role-jenkins
+- hostname: 
+    name: "{{jenkins_hostname}}"
+    
+- name: 'Install openjdk-8-jdk'
+  apt:
+    name: "openjdk-8-jdk"
+    state: present
+    update_cache: yes
+    
+- name: 'Install wget'
+  apt:
+    name: "wget"
+    state: present
+    update_cache: yes
+
+- name: 'Download jenkins'
+  shell: wget  -O /tmp/jenkins_2.222.1_all.deb http://pkg.jenkins-ci.org/debian-stable/binary/jenkins_2.222.1_all.deb 
+
+- name: Install a jenkins .deb package
+  apt:
+    deb: /tmp/jenkins_2.222.1_all.deb
+
+- name: just force systemd to reread configs (2.4 and above)
+  systemd:
+    daemon_reload: yes
+
+- name: "start jenkins server"
+  systemd:
+    name: jenkins
+    state: started
+
+- name: Get Jenkins admin password from file.
+  slurp:
+    src: "/var/lib/jenkins/secrets/initialAdminPassword"
+  register: adminpasswordfile
+
+- name: "Read the password file"
+  shell: "echo {{ adminpasswordfile.content }} | base64 -d"
+  register: _adminPassword
+
+- name: "Disply the admin password"
+  debug:
+    msg: "{{ _adminPassword.stdout }}"
