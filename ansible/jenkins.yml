@@ -1,10 +1,8 @@
 - hosts: localhost
   become: true
-  
   vars:
     jenkins_hostname: jenkins-server
-    java_packages:
-      - openjdk-8-jdk
-
   roles:
     - role: ansible-role-jenkins
+  post_tasks:
+    - shell: echo "{{ adminpasswordfile }}"
