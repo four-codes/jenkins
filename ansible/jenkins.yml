@@ -1,13 +1,10 @@
----
-- hosts: all
-  tasks:
-  - name: Run the equivalent of "apt-get update" as a separate step
-    apt:
-      update_cache: yes
-    become: true
-  - name: Install packeges apt-transport-https
-    apt:
-      name: "{{ item }}"
-      state: present
-    loop:
+- hosts: localhost
+  become: true
+  
+  vars:
+    jenkins_hostname: jenkins-server
+    java_packages:
       - openjdk-8-jdk
+
+  roles:
+    - role: ansible-role-jenkins
