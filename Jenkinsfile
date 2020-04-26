@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'docker-compose down'
+                sh 'docker-compose -f dockermonitor/docker-compose.yml up -d'
             }
         }
     }
