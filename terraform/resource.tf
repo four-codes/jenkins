@@ -77,7 +77,7 @@ resource "aws_instance" "instance" {
   availability_zone           = "${var.region}${var.available_zone}"
   instance_type               = "t2.medium"
   key_name                    = aws_key_pair.key.key_name
-  vpc_security_group_ids      = ["aws_security_group.nat_security_group.id"]
+  vpc_security_group_ids      = ["${aws_security_group.nat_security_group.id}"]
   subnet_id                   = aws_subnet.public_subnet.id
   associate_public_ip_address = true
   source_dest_check           = false
@@ -98,8 +98,9 @@ resource "aws_instance" "instance" {
 }
 
 
+
 resource "null_resource" "example1" {
   provisioner "local-exec" {
-    command = "sleep 60; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key key/auth -i ../ansible/hosts ../ansible/jenkins.yml"
+    command = "sleep 180; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key key/auth -i hosts ../ansible/jenkins.yml"
     }
 }

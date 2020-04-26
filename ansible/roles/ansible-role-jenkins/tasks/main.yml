@@ -28,8 +28,31 @@
 
 - name: "start jenkins server"
   systemd:
+    enabled: yes
     name: jenkins
     state: started
+
+- name: 'Install wget'
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop:
+    - docker.io
+    - docker-compose
+
+- name: "start jenkins server"
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Adding user jenkins user  
+  user: 
+    name: jenkins
+    group: docker
+    shell: /bin/bash
+    append: yes
 
 - name: Get Jenkins admin password from file.
   slurp:
