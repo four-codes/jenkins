@@ -1,0 +1,18 @@
+sudo apt update
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+usermod -aG docker ubunutu
+
+#Run Jenkins
+
+sudo mkdir -p /var/jenkins_home
+sudo chown -R 1000:1000 /var/jenkins_home
+
+docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home --name jenkins jenkins
+
+
+# connect cloud provider url
+
+echo 'jenkins server runs as http://'$(curl -s ifconfig.co)':8080'
