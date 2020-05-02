@@ -16,3 +16,19 @@ docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home
 # connect cloud provider url
 
 echo 'jenkins server runs as http://'$(curl -s ifconfig.co)':8080'
+
+
+
+# Jenkins with docker
+
+FROM jenkins/jenkins
+USER root
+RUN mkdir -p /tmp/download && \
+curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.13.1.tgz | tar -xz -C /tmp/download && \
+rm -rf /tmp/download/docker/dockerd && \
+mv /tmp/download/docker/docker* /usr/local/bin/ && rm -rf /tmp/download && groupadd -g 999 docker && usermod -aG docker jenkins
+USER jenkins
+
+
+#docker build -t jenkins-docker:v1.0 .
+#docker -d -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --name jenkins jenkins-docker
