@@ -32,3 +32,4 @@ USER jenkins
 
 # docker build -t jenkins-docker
 # docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --name jenkins jenkins-docker
+# https://codurance.com/2019/05/30/accessing-and-dumping-jenkins-credentials/
