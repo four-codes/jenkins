@@ -7,11 +7,10 @@ pipeline {
     stages {
         stage('test') {
             steps {
-            if ($GIT_BRANCH == 'master') {
-                        echo 'I only execute on the master branch'
-                    } else {
-                        echo 'I execute elsewhere'
-                    }
+                sh '''
+                    echo $GIT_BRANCH
+                
+                '''
             }
         }
         stage('test1') {
@@ -22,8 +21,7 @@ pipeline {
         stage('test3') {
             steps {
                 script {
-                    Branch = $GIT_BRANCH
-                    if (Branch == 'master') {
+                    if ($GIT_BRANCH == 'master') {
                         echo 'I only execute on the master branch'
                     } else {
                         echo 'I execute elsewhere'
