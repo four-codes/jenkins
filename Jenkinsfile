@@ -4,16 +4,19 @@ pipeline {
        GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
     }
     stages {
-        stage ('Speak') {
+        stage ('StepOne') {
             when {
                 expression { sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim() == 'master' }
             }
             steps {
                 echo "Hello, bitwiseman!"
             }
+
         }
-        }
-                stage ('Speak') {
-                    sh 'echo $GIT_BRANCH'
+        stage ('StepTwo') {
+            steps {
+                sh 'echo $GIT_BRANCH'
+            }
         }
     }
+}
