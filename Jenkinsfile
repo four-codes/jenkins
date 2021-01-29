@@ -6,8 +6,13 @@ pipeline {
     }
     stages {
         stage('Build') {
+              when {
+              expression {
+                $GIT_BRANCH == 'master' 
+              }
+            }
             steps {
-                echo "$GIT_BRANCH"
+                echo "$GIT_BRANCH   master nrabch"
             }
         }
         stage('Test') {
