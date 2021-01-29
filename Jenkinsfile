@@ -8,9 +8,9 @@ pipeline {
         stage('test') {
             steps {
                 sh '''
-                    branchName =  $GIT_BRANCH
+                    def branchName =  $GIT_BRANCH
                     
-                    if ($branchName == 'master') {
+                    if ($GIT_BRANCH == 'master') {
                         echo 'Master Branch'
                     } else {
                         echo "some other branch"
