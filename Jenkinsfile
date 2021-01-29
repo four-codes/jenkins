@@ -7,12 +7,12 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                sh 'env.GIT_BRANCH'
+                sh 'env'
             }
         }
         stage('test1') {
             steps {
-                sh 'echo "env.GIT_BRANCH"'
+                sh 'echo "$GIT_BRANCH"'
             }
         }
         stage('test3') {
