@@ -12,9 +12,8 @@ pipeline {
                 echo "Hello, bitwiseman!"
             }
         }
-        
+        }
                 stage ('Speak') {
                     sh 'echo $GIT_BRANCH'
         }
     }
-}
