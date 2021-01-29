@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Speak') {
             when {
-                expression { GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim() == 'master' }
+                expression { sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim() == 'master' }
             }
             steps {
                 echo "Hello, bitwiseman!"
