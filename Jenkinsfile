@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+       GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    }
     stages {
         stage ('Speak') {
             when {
@@ -8,6 +11,10 @@ pipeline {
             steps {
                 echo "Hello, bitwiseman!"
             }
+        }
+        
+                stage ('Speak') {
+                    sh 'echo $GIT_BRANCH'
         }
     }
 }
