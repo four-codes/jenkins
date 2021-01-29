@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo ${FULL_PATH_BRANCH}
+                echo "test"
             }
         }
         stage('Test') {
