@@ -8,7 +8,7 @@ pipeline {
         stage('test') {
             steps {
                 sh '''
-                    if $GIT_BRANCH == 'master'; then
+                    if [ "$GIT_BRANCH" != 'master' ]; then
                         echo "master"
                     else
                         echo "test"
