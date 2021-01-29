@@ -6,14 +6,13 @@ pipeline {
     }
     stages {
         stage('Build') {
-              when {
-              expression {
-                $GIT_BRANCH == 'master' 
-              }
-            }
-            steps {
-                echo "$GIT_BRANCH   master nrabch"
-            }
+                script {
+                    if (env.FULL_PATH_BRANCH == 'master') {
+                        echo 'I only execute on the master branch'
+                    } else {
+                        echo 'I execute elsewhere'
+                    }
+                }
         }
         stage('Test') {
             steps {
