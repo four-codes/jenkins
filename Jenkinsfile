@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "$FULL_PATH_BRANCH"
+                echo "$GIT_BRANCH"
             }
         }
         stage('Test') {
