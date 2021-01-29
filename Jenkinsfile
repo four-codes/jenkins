@@ -8,12 +8,11 @@ pipeline {
         stage('test') {
             steps {
                 sh '''
-                    if ($GIT_BRANCH == 'master') {
-                        echo 'Master Branch'
-                    } else {
-                        echo "some other branch"
-                    }
-                
+                    if $GIT_BRANCH == 'master'; then
+                        echo "master"
+                    else
+                        echo "test"
+                    fi
                 '''
             }
         }
