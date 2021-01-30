@@ -15,7 +15,7 @@ pipeline {
                 echo "PLEASE PASS TARGET NAME"
             }
         }
-        stage ('Development') {
+        stage ('DEVELOPMENT') {
             when {
                 expression { params.REQUESTED_ACTION == 'dev' }
             }
@@ -23,7 +23,7 @@ pipeline {
                 echo "Hello, development env!"
             }
         }
-        stage ('Test Environment') {
+        stage ('TEST') {
             when {
                 expression { params.REQUESTED_ACTION == 'test' }
             }
@@ -31,7 +31,7 @@ pipeline {
                 echo "Hello, test env!"
             }
         }
-        stage ('Prod Environment') {
+        stage ('PRODUCTION') {
             when {
                 expression { params.REQUESTED_ACTION == 'prod' }
             }
