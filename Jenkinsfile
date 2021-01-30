@@ -3,14 +3,15 @@ pipeline {
     parameters {
         choice(
             choices: ['dev' , 'test', 'master'],
-            description: '',
+            description: 'Mention the target environment',
+            defaultValue: '',
             name: 'REQUESTED_ACTION')
     }
 
     stages {
         stage ('Development') {
             when {
-                expression { params.REQUESTED_ACTION == 'dev' }
+                expression { params.REQUESTED_ACTION == 'dev' || params.REQUESTED_ACTION != '' }
             }
             steps {
                 echo "Hello, development env!"
@@ -18,7 +19,7 @@ pipeline {
         }
         stage ('Test Environment') {
             when {
-                expression { params.REQUESTED_ACTION == 'test' }
+                expression { params.REQUESTED_ACTION == 'dev' || params.REQUESTED_ACTION != '' }
             }
             steps {
                 echo "Hello, test env!"
@@ -26,7 +27,7 @@ pipeline {
         }
         stage ('Prod Environment') {
             when {
-                expression { params.REQUESTED_ACTION == 'master' }
+                expression { params.REQUESTED_ACTION == 'dev' || params.REQUESTED_ACTION != '' }
             }
             steps {
                 echo "Hello, prod env!"
