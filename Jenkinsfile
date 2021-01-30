@@ -2,14 +2,14 @@ pipeline {
     agent any
     parameters {
         choice(
-            choices: ['Select', 'dev' , 'test', 'prod'],
+            choices: ['select', 'dev' , 'test', 'prod'],
             description: 'Mention the target environment',
             name: 'REQUESTED_ACTION')
     }
     stages {
         stage ('NO TARGET') {
             when {
-                expression { params.REQUESTED_ACTION == 'Select' }
+                expression { params.REQUESTED_ACTION == 'select' }
             }
             steps {
                 echo "PLEASE PASS TARGET NAME"
