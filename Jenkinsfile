@@ -1,12 +1,35 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+        choice(
+            choices: ['dev' , 'test', 'master'],
+            description: '',
+            name: 'REQUESTED_ACTION')
     }
+
     stages {
-        stage('Example') {
+        stage ('Development') {
+            when {
+                expression { params.REQUESTED_ACTION == 'dev' }
+            }
             steps {
-                echo "${params.Greeting} World!"
+                echo "Hello, bitwiseman!"
+            }
+        }
+        stage ('TestEnvironment') {
+            when {
+                expression { params.REQUESTED_ACTION == 'test' }
+            }
+            steps {
+                echo "Hello, bitwiseman!"
+            }
+        }
+        stage ('ProdEnvironment') {
+            when {
+                expression { params.REQUESTED_ACTION == 'master' }
+            }
+            steps {
+                echo "Hello, bitwiseman!"
             }
         }
     }
