@@ -13,23 +13,23 @@ pipeline {
                 expression { params.REQUESTED_ACTION == 'dev' }
             }
             steps {
-                echo "Hello, bitwiseman!"
+                echo "Hello, development env!"
             }
         }
-        stage ('TestEnvironment') {
+        stage ('Test Environment') {
             when {
                 expression { params.REQUESTED_ACTION == 'test' }
             }
             steps {
-                echo "Hello, bitwiseman!"
+                echo "Hello, test env!"
             }
         }
-        stage ('ProdEnvironment') {
+        stage ('Prod Environment') {
             when {
                 expression { params.REQUESTED_ACTION == 'master' }
             }
             steps {
-                echo "Hello, bitwiseman!"
+                echo "Hello, prod env!"
             }
         }
     }
