@@ -2,6 +2,7 @@ pipeline {
     agent any
         environment {
         PasswordId     = credentials('password')
+        UsernameId     = credentials('username')
     }
     parameters {
         choice(
@@ -23,7 +24,7 @@ pipeline {
                 expression { params.REQUESTED_ACTION == 'dev' }
             }
             steps {
-                echo "$PasswordId"
+                sshpass -p $PasswordId rsync -rvz -e 'ssh -o StrictHostKeyChecking=no -p 22' --progress *  node@13.82.230.104:/home/node/hard/
             }
         }
         stage ('TEST') {
@@ -31,7 +32,7 @@ pipeline {
                 expression { params.REQUESTED_ACTION == 'test' }
             }
             steps {
-                echo "Hello, test env!"
+                sshpass -p $PasswordId rsync -rvz -e 'ssh -o StrictHostKeyChecking=no -p 22' --progress *  node@13.82.230.104:/home/node/hard/
             }
         }
         stage ('PRODUCTION') {
@@ -39,7 +40,7 @@ pipeline {
                 expression { params.REQUESTED_ACTION == 'prod' }
             }
             steps {
-                echo "Hello, prod env!"
+                sshpass -p $PasswordId rsync -rvz -e 'ssh -o StrictHostKeyChecking=no -p 22' --progress *  node@13.82.230.104:/home/node/hard/
             }
         }
     }
