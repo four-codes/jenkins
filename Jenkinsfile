@@ -1,5 +1,8 @@
 pipeline {
     agent any
+        environment {
+        PasswordId     = credentials('password')
+    }
     parameters {
         choice(
             choices: ['select', 'dev' , 'test', 'prod'],
@@ -20,7 +23,7 @@ pipeline {
                 expression { params.REQUESTED_ACTION == 'dev' }
             }
             steps {
-                echo "Hello, development env!"
+                echo "$PasswordId"
             }
         }
         stage ('TEST') {
