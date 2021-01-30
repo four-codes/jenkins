@@ -4,7 +4,7 @@ pipeline {
         choice(
             choices: ['dev' , 'test', 'master'],
             description: 'Mention the target environment',
-            defaultValue: 'Empty',
+            default: 'Empty',
             name: 'REQUESTED_ACTION')
     }
     stages {
