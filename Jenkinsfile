@@ -7,7 +7,7 @@ pipeline {
             name: 'REQUESTED_ACTION')
     }
     stages {
-        stage ('Development') {
+        stage ('NO TARGET') {
             when {
                 expression { params.REQUESTED_ACTION == 'Select' }
             }
