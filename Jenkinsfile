@@ -2,15 +2,22 @@ pipeline {
     agent any
     parameters {
         choice(
-            choices: ['dev' , 'test', 'master'],
+            choices: ['Select', 'dev' , 'test', 'prod'],
             description: 'Mention the target environment',
-            default: 'Empty',
             name: 'REQUESTED_ACTION')
     }
     stages {
         stage ('Development') {
             when {
-                expression { params.REQUESTED_ACTION == 'dev' || params.REQUESTED_ACTION != 'Empty' }
+                expression { params.REQUESTED_ACTION == 'Select' }
+            }
+            steps {
+                echo "PLEASE PASS TARGET NAME"
+            }
+        }
+        stage ('Development') {
+            when {
+                expression { params.REQUESTED_ACTION == 'dev' }
             }
             steps {
                 echo "Hello, development env!"
@@ -18,7 +25,7 @@ pipeline {
         }
         stage ('Test Environment') {
             when {
-                expression { params.REQUESTED_ACTION == 'dev' || params.REQUESTED_ACTION != 'Empty' }
+                expression { params.REQUESTED_ACTION == 'test' }
             }
             steps {
                 echo "Hello, test env!"
@@ -26,7 +33,7 @@ pipeline {
         }
         stage ('Prod Environment') {
             when {
-                expression { params.REQUESTED_ACTION == 'dev' || params.REQUESTED_ACTION != 'Empty' }
+                expression { params.REQUESTED_ACTION == 'prod' }
             }
             steps {
                 echo "Hello, prod env!"
