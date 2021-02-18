@@ -8,7 +8,9 @@ pipeline {
 
     stages {
         stage('Build') {
-          sh ' echo jenkins'    
+            steps {
+                echo "PLEASE PASS TARGET NAME"
+            } 
         }
 
     }
