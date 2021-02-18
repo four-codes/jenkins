@@ -9,7 +9,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "PLEASE PASS TARGET NAME"
+                
+                sh '''
+                aws configure set region us-east-1
+                aws sts get-caller-identity
+                echo ""completed
+                '''
             } 
         }
 
