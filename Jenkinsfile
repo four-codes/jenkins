@@ -1,23 +1,48 @@
 pipeline {
-    agent any 
-     environment {
-        REGION                = 'us-east-1'
-    }      
+    agent any
+        environment {
+            PasswordId     = "USERNAME"
+            UsernameId     = "PASSWORD"
+    }
+    parameters {
+        string(
+            name: 'PERSON', 
+            defaultValue: 'Mr Jenkins', 
+            description: 'Who should I say hello to?')
+    }
     stages {
-        stage('Docker Image build') {
+        stage ('developing environment') {
+            when {
+                branch 'master'
+            }
             steps {
-                sh '''
-                echo "completed"
-                '''
-            } 
+                echo "PLEASE PASS TARGET NAME"
+            }
         }
-        stage('Build') {
+        stage ('staging environment') {
+            when {
+                branch 'master'
+            }
             steps {
-                sh '''
-                echo "completed"
-                '''
-            } 
+                echo "Hello ${params.PERSON}"
+            }
         }
-
+        stage ('testing environment') {
+            when {
+                branch 'master'
+            }
+            steps {
+                echo "Hello ${params.PERSON}"
+            }
+        }
+        
+        stage ('prod environment') {
+            when {
+                branch 'master'
+            }
+            steps {
+                echo "Hello ${params.PERSON}"
+            }
+        }
     }
 }
