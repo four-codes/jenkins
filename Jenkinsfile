@@ -11,31 +11,7 @@ pipeline {
             description: 'Who should I say hello to?')
     }
     stages {
-        stage ('developing environment') {
-            when {
-                branch 'master'
-            }
-            steps {
-                echo "PLEASE PASS TARGET NAME"
-            }
-        }
-        stage ('staging environment') {
-            when {
-                branch 'master'
-            }
-            steps {
-                echo "Hello ${params.PERSON}"
-            }
-        }
-        stage ('testing environment') {
-            when {
-                branch 'master'
-            }
-            steps {
-                echo "Hello ${params.PERSON}"
-            }
-        }
-        stage ('prod environment') {
+       stage ('prod environment') {
             when {
                 branch 'master'
             }
