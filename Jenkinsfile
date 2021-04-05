@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage ('developing environment') {
             when {
-                    branch 'master'
+                branch 'master'
             }
             steps {
                 echo env.GIT_BRANCH
