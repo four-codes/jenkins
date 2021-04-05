@@ -8,7 +8,7 @@ pipeline {
         string(
             name: 'PERSON', 
             defaultValue: 'Mr Jenkins', 
-            description: 'Who should I say hello to?'),
+            description: 'Who should I say hello to?')
         string(
             name: 'ANIMALS', 
             defaultValue: 'Mr Jenkins', 
