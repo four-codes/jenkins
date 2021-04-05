@@ -17,9 +17,7 @@ pipeline {
     stages {
         stage ('developing environment') {
             when {
-                expression {
-                    return env.GIT_BRANCH == 'master'
-                }
+                    branch 'master'
             }
             steps {
                 echo env.GIT_BRANCH
