@@ -9,10 +9,6 @@ pipeline {
             name: 'PERSON', 
             defaultValue: 'Mr Jenkins', 
             description: 'Who should I say hello to?')
-        string(
-            name: 'ANIMALS', 
-            defaultValue: 'Mr Jenkins', 
-            description: 'Who should I say hello to?')
     }
     stages {
         stage ('developing environment') {
