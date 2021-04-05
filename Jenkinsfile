@@ -12,9 +12,6 @@ pipeline {
     }
     stages {
        stage ('prod environment') {
-            when {
-                branch 'master'
-            }
             steps {
                 echo "Hello ${params.PERSON}"
             }
