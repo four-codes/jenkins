@@ -1,20 +1,23 @@
 pipeline {
-    agent any
-        environment {
-            PasswordId     = "USERNAME"
-            UsernameId     = "PASSWORD"
-    }
-    parameters {
-        string(
-            name: "PERSON", 
-            defaultValue: "Mr Jenkins")
-    }
+    agent any 
+     environment {
+        REGION                = 'us-east-1'
+    }      
     stages {
-       stage ('prod environment') {
+        stage('Docker Image build') {
             steps {
-                sh ''' 
-                echo "Hello ${params.PERSON}"
+                sh '''
+                echo "completed"
                 '''
-            }
+            } 
+        }
+        stage('Build') {
+            steps {
+                sh '''
+                echo "completed"
+                '''
+            } 
+        }
+
     }
 }
