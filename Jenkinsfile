@@ -1,8 +1,8 @@
 pipeline {
     agent any
         environment {
-            PasswordId     = "USERNAME"
-            UsernameId     = "PASSWORD"
+            FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
+            GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
     }
     parameters {
         string(
@@ -12,11 +12,8 @@ pipeline {
     }
     stages {
         stage ('developing environment') {
-            when {
-                branch 'master'
-            }
             steps {
-                echo "PLEASE PASS TARGET NAME"
+                echo env.GIT_BRANCH
             }
         }
         stage ('staging environment') {
