@@ -17,7 +17,10 @@ pipeline {
     stages {
         stage ('developing environment') {
             when {
-                 expression { env.GIT_BRANCH == 'master' }
+                expression {
+                    GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                    return GIT_BRANCH == 'origin/master'
+                }
             }
             steps {
                 echo env.GIT_BRANCH
