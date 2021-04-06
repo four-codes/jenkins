@@ -32,6 +32,7 @@ pipeline {
             steps {
                 sh '''
                 env
+                echo $GIT_BRANCH
                 '''
             }
         }
