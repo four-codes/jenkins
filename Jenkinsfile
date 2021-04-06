@@ -17,11 +17,12 @@ pipeline {
     stages {
         stage ('developing environment') {
             environment { 
-                AN_ACCESS_KEY = "jino"
+                FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
+                GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
             }
             steps {
                 script { 
-                    if ( env.AN_ACCESS_KEY == 'jino') {
+                    if ( env.GIT_BRANCH == 'master') {
                         echo 'This is master branch'
                     } else {
                         echo 'things and stuff'
