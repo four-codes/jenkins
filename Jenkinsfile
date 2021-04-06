@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage ('developing environment') {
             when {
-                expression { $GIT_BRANCH == 'master' }
+                expression { ${GIT_BRANCH} == 'master' }
             }
             steps {
                 echo env.GIT_BRANCH
