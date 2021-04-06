@@ -42,6 +42,7 @@ pipeline {
             }
             steps {
                 echo env.GIT_BRANCH
+                echo $GIT_BRANCH
             }
         }
     }
