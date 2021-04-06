@@ -31,8 +31,7 @@ pipeline {
         stage ('testing environment') {
             steps {
                 sh '''
-                env
-                echo $GIT_BRANCH
+                    env
                 '''
             }
         }
@@ -43,7 +42,6 @@ pipeline {
             }
             steps {
                 echo env.GIT_BRANCH
-                echo $GIT_BRANCH
             }
         }
     }
