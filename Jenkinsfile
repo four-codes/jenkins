@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    checkout: none
+    options { skipDefaultCheckout() }
     environment {
       DEMO = "PROJECT"
     }
