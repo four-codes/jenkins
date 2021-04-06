@@ -1,23 +1,48 @@
 pipeline {
     agent any
+        environment {
+            FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
+            GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
+    }
+    parameters {
+        string(
+            name: 'PERSON', 
+            defaultValue: 'Mr Jenkins', 
+            description: 'Who should I say hello to?')
+        string(
+            name: 'ANIMALS', 
+            defaultValue: 'Mr DONKEY', 
+            description: 'Who should I say hello to?')
+    }
     stages {
-        stage('Example Build') {
+        stage ('developing environment') {
+            when {
+                expression { GIT_BRANCH == 'master' }
+            }
             steps {
-                echo 'Hello World'
+                echo env.GIT_BRANCH
             }
         }
-        stage('Example Deploy') {
+        stage ('staging environment') {
+            steps {
+                echo "Hello ${params.PERSON}"
+            }
+        }
+        stage ('testing environment') {
+            steps {
+                sh '''
+                    env
+                '''
+            }
+        }
+        
+        stage ('prod environment') {
             when {
-                branch 'production'
-                anyOf {
-                    environment name: 'DEPLOY_TO', value: 'production'
-                    environment name: 'DEPLOY_TO', value: 'staging'
-                }
+                branch 'master'
             }
             steps {
-                echo 'Deploying'
+                echo env.GIT_BRANCH
             }
         }
     }
 }
-
