@@ -5,9 +5,10 @@ pipeline {
     }
     parameters {
         string(
-            name: 'PERSON', 
-            defaultValue: 'Mr Jenkins', 
-            description: 'Who should I say hello to?')
+            name: 'BRANCHNAME', 
+            defaultValue: '', 
+            description: 'Please Enter Your Branch Name?')
+        
         string(
             name: 'ANIMALS', 
             defaultValue: 'Mr DONKEY', 
@@ -15,29 +16,26 @@ pipeline {
     }
     stages {
         stage ('developing environment') {
-            environment { 
-                BRANCH_NAME= GIT_BRANCH
+            when { 
+                expression { params.BRANCHNAME == 'master' }
             }
             steps {
-                script {
-                    
-                    if ( $BRANCH_NAME == 'master') {
-                        echo 'This is master branch'
-                    } else {
-                        ss ''' env '''
-                    }
-                }
+              ``sh '''
+                    hostname -i
+                '''
             }
         }
         stage ('staging environment') {
             steps {
-                echo "Hello ${params.PERSON}"
+                sh '''
+                    env
+                '''
             }
         }
         stage ('testing environment') {
             steps {
                 sh '''
-                    env
+                    hostname
                 '''
             }
         }
