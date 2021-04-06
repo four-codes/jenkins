@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    checkout none
+    checkout: none
     environment {
       DEMO = "PROJECT"
     }
