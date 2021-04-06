@@ -17,6 +17,7 @@ pipeline {
             steps {
               sh'''
                     echo "this is production deployment area"
+                    echo $ANIMALS
                 '''
             }
         }
