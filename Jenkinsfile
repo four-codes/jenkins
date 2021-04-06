@@ -18,8 +18,8 @@ pipeline {
         stage ('developing environment') {
             steps {
                 script { 
-                    if (env.GIT_BRANCH == 'master') {
-                        echo 'This is not master or staging'
+                    if ( $GIT_BRANCH == 'master') {
+                        echo 'This is master branch'
                     } else {
                         echo 'things and stuff'
                     }
