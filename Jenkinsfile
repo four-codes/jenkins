@@ -30,7 +30,7 @@ pipeline {
         }
         stage ('testing environment') {
             steps {
-                echo "Hello ${params.ANIMALS}"
+                echo env
             }
         }
         
