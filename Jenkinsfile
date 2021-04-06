@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     BRANCH_NAME=env.GIT_BRANCH
-                    if ( env.BRANCH_NAME == 'master') {
+                    if ( BRANCH_NAME == 'master') {
                         echo 'This is master branch'
                     } else {
                         echo 'things and stuff'
