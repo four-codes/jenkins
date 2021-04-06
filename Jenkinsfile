@@ -23,7 +23,7 @@ pipeline {
     stages {
         stage ('developing environment') {
             when { 
-                expression { params.BRANCHNAME == 'master' || params.TARGET_ENVIRONMENT == 'prod'}
+                expression { params.BRANCHNAME == 'master' && params.TARGET_ENVIRONMENT == 'prod'}
             }
             steps {
               sh '''
