@@ -24,19 +24,13 @@ pipeline {
             }
         }
         stage ('staging environment') {
-            when {
-                branch 'master'
-            }
             steps {
                 echo "Hello ${params.PERSON}"
             }
         }
         stage ('testing environment') {
-            when {
-                branch 'master'
-            }
             steps {
-                echo "Hello ${params.PERSON}"
+                echo "Hello ${params.ANIMALS}"
             }
         }
         
@@ -45,7 +39,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo "Hello ${params.PERSON}"
+                echo env.GIT_BRANCH
             }
         }
     }
