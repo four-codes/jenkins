@@ -30,7 +30,9 @@ pipeline {
         }
         stage ('testing environment') {
             steps {
-                echo env
+                sh '''
+                env
+                '''
             }
         }
         
