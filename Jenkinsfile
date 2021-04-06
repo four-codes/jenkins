@@ -16,17 +16,15 @@ pipeline {
     stages {
         stage ('developing environment') {
             environment { 
-                FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
-                GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
-                
+                BRANCH_NAME=env.GIT_BRANCH
             }
             steps {
                 script {
-                    BRANCH_NAME=env.GIT_BRANCH
+                    
                     if ( $BRANCH_NAME == 'master') {
                         echo 'This is master branch'
                     } else {
-                        echo 'things and stuff'
+                        ss ''' env '''
                     }
                 }
             }
