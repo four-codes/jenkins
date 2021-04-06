@@ -1,7 +1,8 @@
 pipeline {
     agent any
-        environment {
-              DEMO = "PROJECT"
+    checkout none
+    environment {
+      DEMO = "PROJECT"
     }
     parameters {
         string(name: 'BRANCHNAME', defaultValue: '', description: 'Please Enter Your Branch Name?')
