@@ -14,32 +14,44 @@ pipeline {
                 expression { params.BRANCHNAME == 'master' && params.TARGET_ENVIRONMENT == 'prod'}
             }
             steps {
-              sh '''
-                    hostname -i
+              sh 
+                '''
+                    echo "this is production deployment area"
                 '''
             }
         }
         stage ('staging environment') {
+            when { 
+                expression { params.BRANCHNAME == 'test' && params.TARGET_ENVIRONMENT == 'test'}
+            }
             steps {
-                sh '''
-                    env
+              sh 
+                '''
+                    echo "this is testing deployment area"
                 '''
             }
         }
         stage ('testing environment') {
+            when { 
+                expression { params.BRANCHNAME == 'stage' && params.TARGET_ENVIRONMENT == 'staging'}
+            }
             steps {
-                sh '''
-                    hostname
+              sh 
+                '''
+                    echo "this is staging deployment area"
                 '''
             }
         }
         
         stage ('prod environment') {
-            when {
-                branch 'master'
+            when { 
+                expression { params.BRANCHNAME == 'dev' || params.TARGET_ENVIRONMENT == 'dev'}
             }
             steps {
-                echo env.GIT_BRANCH
+              sh 
+                '''
+                    echo "this is dev deployment area"
+                '''
             }
         }
     }
