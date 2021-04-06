@@ -4,21 +4,9 @@ pipeline {
               DEMO = "PROJECT"
     }
     parameters {
-        string(
-            name: 'BRANCHNAME', 
-            defaultValue: '', 
-            description: 'Please Enter Your Branch Name?')
-
-        string(
-            name: 'TARGET_ENVIRONMENT', 
-            defaultValue: '', 
-            description: 'Please Enter Your deployment environment Name?')
-        
-        
-        string(
-            name: 'ANIMALS', 
-            defaultValue: 'Mr DONKEY', 
-            description: 'Who should I say hello to?')
+        string(name: 'BRANCHNAME', defaultValue: '', description: 'Please Enter Your Branch Name?')
+        choice(name: 'TARGET_ENVIRONMENT', choices: ['dev', 'staging', 'test', 'prod'], description: 'Pick something')      
+        string(name: 'ANIMALS', defaultValue: 'Mr DONKEY', description: 'Who should I say hello to?')
     }
     stages {
         stage ('developing environment') {
