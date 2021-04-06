@@ -8,6 +8,12 @@ pipeline {
             name: 'BRANCHNAME', 
             defaultValue: '', 
             description: 'Please Enter Your Branch Name?')
+
+        string(
+            name: 'TARGET_ENVIRONMENT', 
+            defaultValue: '', 
+            description: 'Please Enter Your deployment environment Name?')
+        
         
         string(
             name: 'ANIMALS', 
@@ -17,7 +23,7 @@ pipeline {
     stages {
         stage ('developing environment') {
             when { 
-                expression { params.BRANCHNAME == 'master' }
+                expression { params.BRANCHNAME == 'master' || params.TARGET_ENVIRONMENT == 'prod'}
             }
             steps {
               sh '''
