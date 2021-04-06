@@ -18,7 +18,7 @@ pipeline {
         stage ('developing environment') {
             steps {
                 script { 
-                    if ( env.GIT_BRANCH == 'master') {
+                    if ( env.NODE_NAME == 'master') {
                         echo 'This is master branch'
                     } else {
                         echo 'things and stuff'
