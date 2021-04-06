@@ -20,7 +20,7 @@ pipeline {
                 expression { params.BRANCHNAME == 'master' }
             }
             steps {
-              ``sh '''
+              sh '''
                     hostname -i
                 '''
             }
