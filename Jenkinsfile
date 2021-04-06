@@ -16,9 +16,12 @@ pipeline {
     }
     stages {
         stage ('developing environment') {
+            environment { 
+                AN_ACCESS_KEY = "jino"
+            }
             steps {
                 script { 
-                    if ( env.NODE_NAME == 'master') {
+                    if ( env.AN_ACCESS_KEY == 'jino') {
                         echo 'This is master branch'
                     } else {
                         echo 'things and stuff'
