@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage ('developing environment') {
             environment { 
-                BRANCH_NAME=env.GIT_BRANCH
+                BRANCH_NAME= GIT_BRANCH
             }
             steps {
                 script {
