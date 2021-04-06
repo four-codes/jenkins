@@ -16,9 +16,13 @@ pipeline {
     }
     stages {
         stage ('developing environment') {
-            if (env.GIT_BRANCH == 'master' {
-                echo 'This is not master or staging'
-            } 
+            script { 
+                if (env.BRANCH_NAME == 'master') {
+                    echo 'This is not master or staging'
+                } else {
+                    echo 'things and stuff'
+                }
+            }
         }
         stage ('staging environment') {
             steps {
