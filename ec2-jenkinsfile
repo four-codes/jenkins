@@ -13,12 +13,13 @@ pipeline {
             '''
             }
         }
-    }
+
         stage('Deploment state') {   
         steps {
             sh'''
                 ssh -i /var/jenkins_home/.ssh/id_rsa -o "StrictHostKeyChecking=no" ${SSH_USERNAME}@${SSH_IPADDRESS}  bash otp-service.sh        
-                '''
+            '''
         }
+    }
     }
 }
